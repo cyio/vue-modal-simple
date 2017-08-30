@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rimraf ./dist && webpack --config ./webpack.config.js"
   },
-  "author": "Anthony Gore",
+  "author": "oaker",
+  "email": "icaner@qq.com",
   "license": "MIT",
   "dependencies": {},
   "repository": {
