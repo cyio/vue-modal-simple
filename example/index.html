@@ -9,8 +9,10 @@
   </head>
   <body>
     <div id="app">
-      <button @click="toggleModal">toggle modal</button>
-      <vue-modal :show="showModal" @close="toggleModal"></vue-modal>
+      <button @click="showModal = true">show modal</button>
+      <vue-modal :show="showModal" title="Modal Title" @close="showModal = false">
+        <p slot="content">modal test content</p>
+      </vue-modal>
     </div>
   </body>
   <script>
@@ -22,9 +24,6 @@
         showModal: false
       },
       methods: {
-        toggleModal() {
-          this.showModal = !this.showModal
-        }
       }
     })
   </script>

@@ -1,6 +1,6 @@
 {
-  "name": "vue-modal-simple",
-  "version": "1.0.0",
+  "name": "vue-simple-modal",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/vue-modal.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cyio/vue-modal-simple"
+    "url": "git+https://github.com/cyio/vue-simple-modal"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",

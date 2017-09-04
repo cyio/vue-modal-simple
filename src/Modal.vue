@@ -2,8 +2,18 @@
   <div class="modal-mask" v-show="show" transition="modal">
     <div class="modal-wrapper" @click.self="close">
       <div class="modal-container">
+        <div class="modal-header">
+          <div class="modal-title" slot="header">{{ title }}</div>
+          <div class="modal-close" @click="close">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
         <div class="modal-body">
-          <slot name="body">default body</slot>
+          <slot name="content">default body</slot>
+        </div>
+        <div class="modal-footer cf">
+          <button class="button button-action" @click="close">Confirm action</button>
         </div>
       </div>
     </div>
@@ -47,9 +57,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .7);
+  background-color: rgba(255, 255, 255, 0.8);
   display: table;
-  transition: opacity .3s ease;
+  transition: opacity .16s linear;
 }
 
 .modal-wrapper {
@@ -58,34 +68,87 @@ export default {
 }
 
 .modal-container {
-  width: 300px;
+  max-width: 480px;
   margin: 0px auto;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  transition: all .3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-  border-radius: .10rem;
+  padding: 1.5rem 2rem 1.8rem 2rem;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #C5C5C5;
+  transition: all .12s ease-in;
+}
+
+.modal-header {
   position: relative;
 }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
+.modal-title {
+  font-size: 1.13rem
+}
+
+.modal-full {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  display: table;
+  transition: opacity .12s linear;
+}
+
+.modal-full-wrapper {
+  padding: 6rem 2rem;
+  margin: 0 auto;
+  max-width: 640px;
+  box-sizing: inherit;
+  position: relative;
+  transition: all .12s ease-in;
+}
+.modal-full-wrapper .modal-close {
+  top: 6.2rem;
+  right: -4rem;
+  transform: translate(0, 0);
+}
+
+.modal-close {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+}
+.modal-close:hover {
+  cursor: pointer;
+}
+.modal-close:hover span {
+  background-color: #0C0C0C;
+}
+.modal-close span {
+  position: absolute;
+  Z-index: 1;
+  width: 2px;
+  height: 28px;
+  top: -1px;
+  margin-left: 12px;
+  background-color: #CBCBCB;
+  transition: all .12s linear;
+  display: block;
+}
+.modal-close span:first-child {
+  transform: rotate(45deg);
+}
+.modal-close span:last-child {
+  transform: rotate(135deg);
 }
 
 .modal-body {
-  background-color: #fff;
-  color: #000
+  padding: 1rem 0 2rem 0;
 }
 
 .modal-default-button {
-  width: 0.7rem;
-  height: 0.28rem;
-  background-color: #e71d36;
-  border: none;
-  color: #fff;
-  border-radius: .05rem;
-  font-size: 14px;
+  float: right;
 }
 
 .modal-enter, .modal-leave {
@@ -94,28 +157,53 @@ export default {
 
 .modal-enter .modal-container,
 .modal-leave .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+  opacity: 0;
 }
-.modal-header {
-  background: theme;
-  height: 30px;
-  line-height: 30px;
+
+.modal-enter .modal-full-wrapper,
+.modal-leave .modal-full-wrapper {
+  -webkit-transform: scale(0.95);
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+.button {
+  height: 36px;
+  line-height: 32px;
+  background: none;
+  padding: 0 1rem;
+  overflow: visible;
+  border-radius: 5px;
+  margin-left: 1rem;
+  letter-spacing: 1px;
+  font-size: 13px;
+  font-size: .8125rem;
+  color: #b6b6b6;
+  text-transform: uppercase;
+  border: 2px solid #cbcbcb;
+  font-weight: 600;
+  transition: all .12s linear;
+  float: right;
+}
+.button-action {
+  border-color: #12d758;
+  color: #10bf4e;
+}
+.button-action:hover {
+  background: #12d758;
   color: #fff;
-  font-size: 22px;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid gainsboro;
-  border-top-left-radius: .10rem;
-  border-top-right-radius: .10rem;
 }
-.modal-header .close {
-  position: absolute;
-  right: .05rem;
-  font-size: 35px;
+.cf:after, .cf:before {
+  content: " ";
+  display: table;
 }
-.modal-footer {
-  text-align: center;
+.cf:after {
+		clear: both;
+}
+.cf:after, .cf:before {
+		content: " ";
+		display: table;
 }
 </style>
